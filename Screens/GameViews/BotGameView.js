@@ -10,18 +10,20 @@ import {
 
 const SIZE = 100;
 
-const GameView = ({
+const BotGameView = ({
   onPress,
-  username = "",
-  userscore = "",
-  userchoice,
+  onPressReset,
+  botname = "",
+  botscore = 0,
+  botchoice,
+  //onChange,
   ...props
 }) => (
   <View style={styles.container} {...props}>
-    <Text style={styles.default_bold_text}>{username}</Text>
-    <Text style={styles.default_bold_text}>Score: {userscore}</Text>
+    <Text style={styles.default_bold_text}>{botname}</Text>
+    <Text style={styles.default_bold_text}>Score: {botscore}</Text>
     <View>
-      {/*User Container*/}
+      {/*bot Container*/}
       <View
         style={{
           backgroundColor: "#fff",
@@ -32,21 +34,20 @@ const GameView = ({
           marginVertical: 10,
         }}
       >
-        <Text style={styles.choice_textStyle}>Choice: {userchoice}</Text>
+        <Text style={styles.choice_textStyle}>Choice: {botchoice}</Text>
       </View>
     </View>
 
     <View style={styles.choices_view}>
       {/*Game Container*/}
+      
       <TouchableOpacity onPress={onPress} style={styles.TouchableOpacityStyle}>
-        <Text style={styles.choices_text}>Rock</Text>
+        <Text style={styles.choices_text}>Play</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={onPress} style={styles.TouchableOpacityStyle}>
-        <Text style={styles.choices_text}>Paper</Text>
+      <TouchableOpacity onPress={onPressReset} style={styles.TouchableOpacityStyle}>
+        <Text style={styles.choices_text}>Reset</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={onPress} style={styles.TouchableOpacityStyle}>
-        <Text style={styles.choices_text}>Scissors</Text>
-      </TouchableOpacity>
+      
     </View>
   </View>
 );
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
     borderWidth: 10,
     borderColor: "#fff",
     padding: 20,
+    width:"90%",
     ...Platform.select({
       ios: {
         flexDirection: "column",
@@ -82,7 +84,8 @@ const styles = StyleSheet.create({
   choices_view: {
     paddingVertical: 20,
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    alignItems: "center",
+    margin: 10
   },
   TouchableOpacityStyle: {
     color: "#fff",
@@ -93,6 +96,9 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
     fontWeight: "900",
     fontSize: 15,
+    //width:"100%",
+    justifyContent:"center",
+    alignItems:"center"
   },
   choice_textStyle: {
     color: "#000",
@@ -101,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GameView;
+export default BotGameView;
